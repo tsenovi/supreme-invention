@@ -1,5 +1,3 @@
-package com.vso;
-
 import java.util.Scanner;
 
 public class Task3 {

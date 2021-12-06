@@ -1,5 +1,3 @@
-package com.vso;
-
 public class triangle {
 
     public static void main(String[] args) {

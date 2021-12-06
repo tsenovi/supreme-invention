@@ -1,4 +1,4 @@
-package com.vso;
+
 
 public class Stadium {
     public static void main(String[] args) {

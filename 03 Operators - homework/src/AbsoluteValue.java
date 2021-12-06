@@ -1,6 +1,4 @@
-package com.vso;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class AbsoluteValue {

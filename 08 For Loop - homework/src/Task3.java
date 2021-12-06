@@ -17,7 +17,7 @@ public class Task3 {
             for (int column = 0; column < rows; column++) {
                 System.out.print("о");
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 }
