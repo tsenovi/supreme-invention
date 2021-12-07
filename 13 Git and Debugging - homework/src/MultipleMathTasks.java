@@ -13,26 +13,26 @@ public class MultipleMathTasks {
         switch (task) {
             case 1 -> {
                 System.out.println("Task 1: ");
-                int number = isPositive(getNumber());
+                int number = (int) isPositive(getNumber());
                 System.out.println("Result: " + swapNumbersOfTwoDigitNumber(number));
             }
             case 2 -> {
                 System.out.println("Task 2: ");
-                int numberOne = isPositive(getNumber());
-                int numberTwo = isPositive(getNumber());
+                double numberOne = isPositive(getNumber());
+                double numberTwo = isPositive(getNumber());
                 System.out.println("Result: " + calculateAverageOfTwoNumbers(numberOne, numberTwo));
             }
             case 3 -> {
                 System.out.println("Task 3: ");
-                int numberA = isDifferentWithZero(getNumber());
-                int numberB = getNumber();
+                double numberA = isDifferentWithZero(getNumber());
+                double numberB = getNumber();
                 System.out.println("Result: x = " + calculateLinearEquation(numberA, numberB));
             }
             default -> printErrorMessage();
         }
     }
 
-    public static int isPositive(int number) {
+    public static double isPositive(double number) {
         Scanner scanner = new Scanner(System.in);
         while (number <= 9) {
             System.out.println("Insert positive number: ");
@@ -45,7 +45,7 @@ public class MultipleMathTasks {
         return number;
     }
 
-    public static int isDifferentWithZero(int number) {
+    public static double isDifferentWithZero(double number) {
         Scanner scanner = new Scanner(System.in);
         while (number == 0) {
             System.out.println("Insert number different than 0: ");
