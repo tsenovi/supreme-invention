@@ -9,18 +9,12 @@ public class CaesarCipher {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.print("\tBreaking Caesar Cipher\nInsert the encrypted message: ");
         String encryptedText = scanner.nextLine();
         String sortedText = sortText(encryptedText);
         char frequentLetter = findMostFrequentLetter(sortedText);
-
         char[] mostCommonLetters = {'e', 't', 'h'};
-        printResults(mostCommonLetters, frequentLetter);
-    }
-
-    public static void printResults(char[] letters, char frequentLetter) {
-        for (int index = 0; index < letters.length; index++) {
-            int complementaryOffset = calculateOffset(letters[index], frequentLetter);
-        }
+        printResults(mostCommonLetters, frequentLetter, encryptedText);
     }
 
     public static String sortText(String text) {
@@ -28,11 +22,6 @@ public class CaesarCipher {
         char[] charsArray = text.toCharArray();
         Arrays.sort(charsArray);
         return new String(charsArray);
-    }
-
-    public static int calculateOffset(char currentLetter, char frequentLetter) {
-        int offset = Math.abs(currentLetter - frequentLetter);
-        return NUMBER_OF_ALPHABET_LETTERS - offset;
     }
 
     public static char findMostFrequentLetter(String text) {
@@ -60,6 +49,37 @@ public class CaesarCipher {
         }
 
         return frequentLetter;
+    }
+
+    public static void printResults(char[] letters, char frequentLetter, String text) {
+        for (int index = 0; index < letters.length; index++) {
+            int complementaryOffset = calculateComplementaryOffset(letters[index], frequentLetter);
+            StringBuffer result = decryptText(text, complementaryOffset);
+            System.out.println(index + 1 + ".Possible decrypted message: " + result);
+        }
+    }
+
+    public static int calculateComplementaryOffset(char currentLetter, char frequentLetter) {
+        int offset = Math.abs(currentLetter - frequentLetter);
+        return NUMBER_OF_ALPHABET_LETTERS - offset;
+    }
+
+    public static StringBuffer decryptText(String text, int offset) {
+        text = getLowerCaseText(text);
+        StringBuffer result = new StringBuffer();
+        for (int i = 0; i < text.length(); i++) {
+            char currentSymbol = text.charAt(i);
+            if (isSmallLetter(currentSymbol)) {
+                int originalAlphabetPosition = currentSymbol - SMALL_LETTER_A;
+                int newAlphabetPosition = (originalAlphabetPosition + offset) % NUMBER_OF_ALPHABET_LETTERS;
+                char newLetter = (char) (newAlphabetPosition + SMALL_LETTER_A);
+                result.append(newLetter);
+            } else {
+                result.append(currentSymbol);
+            }
+        }
+
+        return result;
     }
 
     public static boolean isSmallLetter(char letter) {
