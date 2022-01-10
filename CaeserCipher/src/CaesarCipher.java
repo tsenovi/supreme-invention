@@ -6,15 +6,23 @@ public class CaesarCipher {
     public static final int NUMBER_OF_ALPHABET_LETTERS = 26;
     public static final char SMALL_LETTER_A = 'a';
     public static final char SMALL_LETTER_Z = 'z';
+    public static final char[] COMMON_LETTERS = {'e', 't', 'h'};
+    public static final char[] REST_OF_THE_LETTERS = {'a', 'b', 'c', 'd', 'f', 'g', 'i', 'j',
+            'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 'u', 'v',
+            'w', 'x', 'y', 'z'};
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("\tBreaking Caesar Cipher\nInsert the encrypted message: ");
+
+        Scanner scanner = new Scanner(System.in);
         String encryptedText = scanner.nextLine();
         String sortedText = sortText(encryptedText);
         char frequentLetter = findMostFrequentLetter(sortedText);
-        char[] mostCommonLetters = {'e', 't', 'h'};
-        printResults(mostCommonLetters, frequentLetter, encryptedText);
+        printResults(COMMON_LETTERS, frequentLetter, encryptedText);
+
+        System.out.println("Press enter if you want to see the rest 23 results!");
+        String userInput = scanner.nextLine();
+        if (userInput != null) printResults(REST_OF_THE_LETTERS, frequentLetter, encryptedText);
     }
 
     public static String sortText(String text) {
