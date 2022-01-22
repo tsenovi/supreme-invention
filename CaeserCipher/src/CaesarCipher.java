@@ -13,16 +13,26 @@ public class CaesarCipher {
 
     public static void main(String[] args) {
         System.out.print("\tBreaking Caesar Cipher\nInsert the encrypted message: ");
-
-        Scanner scanner = new Scanner(System.in);
-        String encryptedText = scanner.nextLine();
+        String encryptedText = getUserInput();
         String sortedText = sortText(encryptedText);
         char frequentLetter = findMostFrequentLetter(sortedText);
         printResults(COMMON_LETTERS, frequentLetter, encryptedText);
 
-        System.out.println("Press enter if you want to see the rest 23 results!");
+        System.out.println("Enter \"yes\" if you want to see the rest 23 results!");
+        String userChoice = getUserInput();
+        userChoice = getLowerCaseText(userChoice);
+        if (userChoice.equals("yes")) printResults(REST_OF_THE_LETTERS, frequentLetter, encryptedText);
+    }
+
+    private static String getUserInput() {
+        Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
-        if (userInput != null) printResults(REST_OF_THE_LETTERS, frequentLetter, encryptedText);
+        while (userInput.isEmpty()) {
+            System.out.println("Invalid input!");
+            userInput = scanner.nextLine();
+        }
+
+        return userInput;
     }
 
     public static String sortText(String text) {
